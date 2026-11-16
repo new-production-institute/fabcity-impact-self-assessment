@@ -1,6 +1,6 @@
 # Fab City Full Stack Self-Assessment
 
-A small, dependency-free web tool for fab cities and regions. It uses the Fab City Full Stack as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today?
+A small, dependency-free web tool for fab cities and regions. It uses the [Fab City Full Stack]([url](https://fab.city/learning-hub/resource-fab-city-full-stack)) as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today?
 
 ## Background
 
