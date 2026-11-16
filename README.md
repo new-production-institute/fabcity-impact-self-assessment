@@ -10,6 +10,8 @@ A small, dependency-free web tool for cities and regions to assess themselves ag
 
 There is no backend. Answers are stored in the visitor's own browser (localStorage) and are only passed on if they use the share link or an export.
 
+THIS IS NOT A BENCHMARK - you will not see what others put in. We hope that people working in fab cities and regions can use the self-assessment as a starting point for discussions, and for creating lasting impact. 
+
 ## Files
 
 | File | Purpose |
