@@ -43,7 +43,8 @@ There is no backend. Answers are stored in the visitor's own browser (localStora
 The result is a self-description. It reflects the view of the person or group filling in the form and is not comparable across cities without further calibration.
 Participants of the Fab25 workshop identified gaps in the Full Stack itself, which this tool inherits: arts and culture and human impact are missing, Fab Regions are underrepresented, repair and reuse have no clear place, and "value" (layer 3), "place-based" (layer 5) and "bioregion" (layer 6) need clearer definitions.
 
-## Files
+## Info on this repository
+### Files
 
 | File | Purpose |
 |---|---|
@@ -52,11 +53,11 @@ Participants of the Fab25 workshop identified gaps in the Full Stack itself, whi
 | `assets/fonts/` | Self-hosted Poppins font files (SIL Open Font License, see `LICENSE.txt` there) |
 | `README.md` | This file |
 
-## Design
+### Design
 
 The look follows the New Production Institute's Technology Product Portfolio site: Poppins, black on white, one amber accent (`#fcb900`) used as a highlight bar, and the hexagon mark. Colours are defined as CSS variables at the top of `index.html`. Poppins is served from this repository, so no request goes to a font service.
 
-## Change the content
+### Change the content
 
 Edit `framework.js`:
 
@@ -74,6 +75,8 @@ Peuckert, J., Wenzelmann, V., & Rüdebusch, G. (2025). Measuring the Impacts of 
 
 ## Funding
 
-"Fab City – Decentralized Digital Production for Urban Value Creation" is funded by dtec.bw and supported by the European Union – NextGenerationEU.## License
+"Fab City – Decentralized Digital Production for Urban Value Creation" is funded by dtec.bw and supported by the European Union – NextGenerationEU.
+
+## License
 
 No license has been chosen yet. Add a `LICENSE` file before inviting reuse.
