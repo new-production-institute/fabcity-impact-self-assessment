@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab City Full Stack Self-Assessment</title>
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 4 L90 27 L90 73 L50 96 L10 73 L10 27 Z' fill='none' stroke='%23fcb900' stroke-width='12'/%3E%3C/svg%3E">
+<style>
+  /* Visual language after the New Production Institute: bold black Poppins,
+     a single amber accent used as a highlight bar, and the hexagon mark.
+     Amber (#fcb900) is too light to read as text on white, so it is only
+     used as a fill or bar behind black text, never as text or line colour. */
+  @font-face { font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+    src: local("Poppins Regular"), local("Poppins"), url("assets/fonts/poppins-400.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+    src: local("Poppins SemiBold"), url("assets/fonts/poppins-600.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+    src: local("Poppins Bold"), url("assets/fonts/poppins-700.woff2") format("woff2"); }
+  :root {
+    color-scheme: light;
+    --background: #ffffff;
+    --surface: #ffffff;
+    --band: #f4f4f4;
+    --band-strong: #eaeaea;
+    --text: #000000;
+    --muted: #5a5a5a;
+    --line: #e2e2e2;
+    --accent: #fcb900;
+    --radius: 0.25rem;
+    --bar: 0.34em;
+    --shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 10px 28px rgb(0 0 0 / 7%);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-width: 20rem; background: var(--background); color: var(--text);
+    font: 1rem/1.6 "Poppins", "Century Gothic", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+  .shell { width: min(100% - 3rem, 78rem); margin-inline: auto; }
+  h1, h2, h3, p { margin-top: 0; }
+  h1, h2 { font-weight: 700; letter-spacing: -0.03em; text-wrap: balance; }
+  .mark {
+    padding-inline: 0.06em;
+    background-image: linear-gradient(to top, var(--accent) var(--bar), transparent var(--bar));
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  :focus-visible { outline: 0.2rem solid var(--text); outline-offset: 0.2rem; }
+
+  .site-header { box-shadow: 0 1px 0 var(--line); }
+  .masthead { display: flex; min-height: 5rem; align-items: center; }
+  .wordmark { display: inline-flex; align-items: center; gap: 0.65rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+  .hex-mark { width: 1.75rem; height: 1.75rem; flex: none; }
+  .hex__ring { fill: none; stroke: var(--accent); stroke-width: 7; stroke-linejoin: round; }
+  .hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem); }
+  .eyebrow { margin: 0 0 1rem; color: var(--muted); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+  h1 { max-width: 22ch; margin-bottom: 1.5rem; font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.34; }
+  .hero p.intro { margin: 0; max-width: 62ch; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.2rem); }
+
+  .band { background: var(--band); padding-block: clamp(2rem, 4vw, 3rem); }
+  main {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: 1.75rem; align-items: start;
+  }
+  @media (max-width: 62rem) { main { grid-template-columns: minmax(0, 1fr); } }
+  .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.75rem 1.5rem; margin-bottom: 1.5rem; }
+  .card h2 { font-size: 1.3rem; line-height: 1.3; margin: 0 0 0.35rem; }
+  .card h3 {
+    font-size: 0.95rem; font-weight: 700; margin: 1.75rem 0 1rem; padding-bottom: 0.5rem;
+    border-bottom: 0.25rem solid var(--accent);
+  }
+  .layer-head { display: flex; align-items: center; gap: 0.85rem; }
+  .hex-num { position: relative; width: 2.6rem; height: 2.6rem; flex: none; display: grid; place-items: center; font-weight: 700; font-size: 1rem; }
+  .hex-num svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .focus { margin: 0 0 1rem; color: var(--muted); font-size: 0.92rem; }
+  label.field { display: block; font-weight: 700; margin-bottom: 0.4rem; }
+  input[type=text], select {
+    width: 100%; min-height: 2.75rem; padding: 0.5rem 0.75rem; font: inherit; color: inherit;
+    background: var(--surface); border: 2px solid var(--text); border-radius: var(--radius);
+  }
+  fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  legend { padding: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+  .level {
+    display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.65rem 0.8rem; margin-bottom: 0.4rem;
+    border-radius: var(--radius); background: var(--band); cursor: pointer; font-size: 0.93rem; line-height: 1.5;
+  }
+  .level:hover { background: var(--band-strong); }
+  .level input { position: absolute; opacity: 0; }
+  .level .badge {
+    flex: none; width: 1.7rem; height: 1.7rem; border-radius: 50%; border: 2px solid var(--text); background: var(--surface);
+    display: grid; place-items: center; font-weight: 700; font-size: 0.85rem;
+  }
+  .level:has(input:checked) { background: var(--accent); font-weight: 600; }
+  .level:has(input:checked) .badge { background: var(--text); color: var(--surface); }
+  .level:has(input:focus-visible) { outline: 0.2rem solid var(--text); outline-offset: 0.15rem; }
+
+  .section-title { font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.3; margin: 0 0 0.6rem; }
+  .card + .section-title, #layers + .section-title { margin-top: 3rem; }
+  .section-intro { color: var(--muted); max-width: 62ch; margin-bottom: 1.5rem; }
+  .hex-num.solid svg path { fill: var(--accent); }
+  .hex-num > span { position: relative; }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .tile b { display: inline-block; font-size: 1.6rem; line-height: 1.2; padding-inline: 0.2em; background: var(--accent); font-variant-numeric: tabular-nums; }
+  .tile small { font-size: 0.9rem; font-weight: 600; color: var(--muted); margin-left: 0.25em; }
+  .tile span { display: block; font-size: 0.82rem; font-weight: 600; line-height: 1.35; margin-top: 0.35rem; }
+
+  /* The results column stays in view and scrolls on its own when it is taller than the window. */
+  aside { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; padding: 1rem 0.75rem 0; margin: -1rem -0.75rem 0; }
+  @media (max-width: 62rem) { aside { position: static; max-height: none; overflow: visible; } }
+  #chart { position: relative; }
+  #chart svg { width: 100%; height: auto; display: block; }
+  #tip {
+    position: absolute; pointer-events: none; background: var(--text); color: var(--surface);
+    padding: 0.3rem 0.6rem; border-radius: var(--radius); font-size: 0.8rem; white-space: nowrap; display: none; transform: translate(-50%, -130%);
+  }
+  .stats { display: flex; gap: 2rem; margin: 0.75rem 0 1rem; }
+  .stat b { display: inline-block; font-size: 2rem; line-height: 1.2; padding-inline: 0.2em; background: var(--accent); font-variant-numeric: tabular-nums; }
+  .stat span { display: block; font-size: 0.82rem; color: var(--muted); font-weight: 600; margin-top: 0.2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem; }
+  th, td { text-align: right; padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { border-bottom: 0.2rem solid var(--accent); font-weight: 700; }
+  .tablewrap { overflow-x: auto; }
+  details summary { cursor: pointer; font-weight: 700; font-size: 0.93rem; }
+  ol.next { margin: 0; padding: 0; list-style: none; font-size: 0.92rem; }
+  ol.next li { padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+  ol.next li:last-child { border-bottom: 0; }
+  ol.next .step { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  button {
+    font: inherit; font-size: 0.9rem; font-weight: 700; min-height: 2.75rem; padding: 0.4rem 1rem; border-radius: var(--radius); cursor: pointer;
+    border: 2px solid var(--text); background: var(--surface); color: var(--text);
+  }
+  button.primary { background: var(--text); color: var(--surface); }
+  button:hover { background: var(--accent); border-color: var(--accent); color: var(--text); }
+  .muted { color: var(--muted); font-size: 0.85rem; }
+  .site-footer { background: var(--band); box-shadow: inset 0 0.3rem 0 var(--accent); }
+  .site-footer .shell { padding-block: 2.5rem; font-size: 0.95rem; }
+  .site-footer p { max-width: 68ch; margin-bottom: 0.4rem; }
+  @media print {
+    .band { background: #fff; padding: 0; }
+    main { display: block; }
+    aside { position: static; max-height: none; overflow: visible; }
+    .noprint { display: none !important; }
+    .card { break-inside: avoid; box-shadow: none; border: 1px solid var(--line); }
+    .level:not(:has(input:checked)) { display: none; }
+    .level, .stat b, .tile b, .hex-num.solid svg path { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="shell masthead">
+    <span class="wordmark">
+      <svg class="hex-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path class="hex__ring" d="M50 4 L90 27 L90 73 L50 96 L10 73 L10 27 Z"/></svg>
+      <span id="wordmark"></span>
+    </span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="shell">
+    <p class="eyebrow">Self-assessment tool</p>
+    <h1><span class="mark" id="title"></span></h1>
+    <p class="intro" id="intro"></p>
+  </div>
+</section>
+
+<div class="band">
+<main class="shell">
+  <div id="form">
+    <div class="card">
+      <label class="field" for="city">City / region</label>
+      <input type="text" id="city" placeholder="e.g. Hamburg" autocomplete="off">
+    </div>
+    <h2 class="section-title"><span class="mark">The seven layers</span></h2>
+    <p class="section-intro">For each layer, pick the description that fits best today.</p>
+    <div id="layers"></div>
+    <h2 class="section-title"><span class="mark">Cross-cutting lenses</span></h2>
+    <p class="section-intro">Three questions that apply across all layers. Rate each one once for your city / region as a whole.</p>
+    <div id="lenses"></div>
+  </div>
+
+  <aside>
+    <div class="card">
+      <h2><span class="mark" id="resultTitle">Your profile</span></h2>
+      <div class="stats">
+        <div class="stat"><b id="avg">–</b><span>average level (0–4)</span></div>
+        <div class="stat"><b id="done">0/7</b><span>layers rated</span></div>
+      </div>
+      <div id="chart"><div id="tip"></div></div>
+      <details id="tableDetails">
+        <summary>Show as table</summary>
+        <div class="tablewrap" id="table"></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2><span class="mark">Cross-cutting lenses</span></h2>
+      <p class="focus">Rated once across all layers, on a scale from 0 to 3.</p>
+      <div class="tiles" id="lensTiles"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="mark">Next steps</span></h2>
+      <p class="focus">What the next level looks like for each layer and lens you rated.</p>
+      <ol class="next" id="next"></ol>
+    </div>
+
+    <div class="card noprint">
+      <h2><span class="mark">Save &amp; share</span></h2>
+      <p class="focus">Your answers stay in this browser. Nothing is sent to a server.</p>
+      <div class="buttons">
+        <button class="primary" id="btnLink">Copy share link</button>
+        <button id="btnPng">Chart (PNG)</button>
+        <button id="btnSvg">Chart (SVG)</button>
+        <button id="btnCsv">Results (CSV)</button>
+        <button id="btnJson">Results (JSON)</button>
+        <button id="btnPrint">Print / PDF</button>
+        <button id="btnReset">Reset</button>
+      </div>
+      <p class="muted" id="msg" role="status"></p>
+    </div>
+  </aside>
+</main>
+</div>
+
+<footer class="site-footer">
+  <div class="shell">
+    <p><strong id="footTitle"></strong></p>
+    <p class="muted">Based on the Fab City Full Stack. Self-assessment results reflect the view of the person filling in the form.</p>
+  </div>
+</footer>
+
+<script src="framework.js"></script>
+<script>
+(function () {
+  'use strict';
+  var F = window.FRAMEWORK;
+  var N = F.layers.length, L = F.lenses.length, MAX = 4, LMAX = F.lenses[0].levels.length - 1;
+  var KEY = 'fabcity-self-assessment-v2';
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+
+  var state = {
+    city: '',
+    scores: F.layers.map(function () { return null; }),
+    lenses: F.lenses.map(function () { return null; })
+  };
+
+  /* ---------- persistence: URL hash first, then localStorage ---------- */
+  function encode(arr) { return arr.map(function (v) { return v === null ? '-' : v; }).join(''); }
+  function decode(str, len, max) {
+    var out = [];
+    for (var i = 0; i < len; i++) {
+      var v = parseInt((str || '').charAt(i), 10);
+      out.push(isNaN(v) || v < 0 || v > max ? null : v);
+    }
+    return out;
+  }
+  function toParams() {
+    var p = new URLSearchParams();
+    if (state.city) p.set('c', state.city);
+    p.set('s', encode(state.scores));
+    p.set('x', encode(state.lenses));
+    return p.toString();
+  }
+  function fromParams(str) {
+    var p = new URLSearchParams(str);
+    if (!p.has('s')) return false;
+    state.city = (p.get('c') || '').slice(0, 80);
+    state.scores = decode(p.get('s'), N, MAX);
+    state.lenses = decode(p.get('x'), L, LMAX);
+    return true;
+  }
+  function save() { try { localStorage.setItem(KEY, toParams()); } catch (e) {} }
+  function load() {
+    if (location.hash.length > 1 && fromParams(location.hash.slice(1))) {
+      history.replaceState(null, '', location.pathname + location.search);
+      return;
+    }
+    try { var s = localStorage.getItem(KEY); if (s) fromParams(s); } catch (e) {}
+  }
+
+  /* ---------- form ---------- */
+  function renderForm() {
+    $('title').textContent = F.title;
+    $('wordmark').textContent = F.title;
+    $('footTitle').textContent = F.title;
+    document.title = F.title;
+    $('intro').textContent = F.intro;
+    $('city').value = state.city;
+
+    var options = function (name, levels, current) {
+      return levels.map(function (text, v) {
+        return '<label class="level"><input type="radio" name="' + name + '" value="' + v + '"' +
+          (current === v ? ' checked' : '') + '><span class="badge">' + v + '</span><span>' + esc(text) + '</span></label>';
+      }).join('');
+    };
+    var hex = '<svg viewBox="0 0 100 100" aria-hidden="true"><path class="hex__ring" d="M50 4 L90 27 L90 73 L50 96 L10 73 L10 27 Z"/></svg>';
+
+    $('layers').innerHTML = F.layers.map(function (layer, i) {
+      return '<section class="card"><fieldset><legend><h2 class="layer-head"><span class="hex-num">' + hex + '<span>' + (i + 1) + '</span></span><span>' + esc(layer.name) + '</span></h2></legend>' +
+        '<p class="focus">' + esc(layer.focus) + '</p>' + options('layer' + i, layer.levels, state.scores[i]) + '</fieldset></section>';
+    }).join('');
+
+    $('lenses').innerHTML = F.lenses.map(function (lens, j) {
+      return '<section class="card"><fieldset><legend><h2 class="layer-head"><span class="hex-num solid">' + hex + '<span>' + String.fromCharCode(65 + j) + '</span></span><span>' + esc(lens.name) + '</span></h2></legend>' +
+        '<p class="focus">' + esc(lens.question) + '</p>' + options('lens' + j, lens.levels, state.lenses[j]) + '</fieldset></section>';
+    }).join('');
+  }
+
+  $('form').addEventListener('change', function (e) {
+    var t = e.target, m;
+    if ((m = /^layer(\d+)$/.exec(t.name))) state.scores[+m[1]] = +t.value;
+    else if ((m = /^lens(\d+)$/.exec(t.name))) state.lenses[+m[1]] = +t.value;
+    else return;
+    save(); renderResults();
+  });
+  $('city').addEventListener('input', function (e) { state.city = e.target.value.slice(0, 80); save(); renderResults(); });
+
+  /* ---------- radar chart ---------- */
+  var W = 640, H = 540, CX = 320, CY = 262, R = 165;
+  function pt(i, v) {
+    var a = -Math.PI / 2 + i * 2 * Math.PI / N, r = R * v / MAX;
+    return [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+  }
+  function wrap(text, max) {
+    var lines = [], cur = '';
+    text.split(' ').forEach(function (w) {
+      if (cur && (cur + ' ' + w).length > max) { lines.push(cur); cur = w; } else cur = cur ? cur + ' ' + w : w;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  function screenPalette() {
+    return PRINT;
+  }
+  /* Profile: black line on an amber fill. */
+  var PRINT = { surface: '#ffffff', text: '#000000', text2: '#5a5a5a', grid: '#dcdcdc', own: '#000000', fill: '#fcb900', ref: '#5a5a5a' };
+
+  function series() {
+    return [{ name: state.city || 'Your city / region', values: state.scores, own: true }];
+  }
+
+  function radarSVG(pal, standalone) {
+    var font = 'font-family="Poppins, Century Gothic, system-ui, -apple-system, Segoe UI, sans-serif"';
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" ' +
+      (standalone ? 'width="' + W + '" height="' + H + '" ' : '') + font + ' role="img" aria-label="Radar chart of maturity levels per Full Stack layer">';
+    if (standalone) s += '<rect width="' + W + '" height="' + H + '" fill="' + pal.surface + '"/>';
+    var v, i, p;
+    for (v = 1; v <= MAX; v++) {
+      var ring = [];
+      for (i = 0; i < N; i++) ring.push(pt(i, v).map(function (n) { return n.toFixed(1); }).join(','));
+      s += '<polygon points="' + ring.join(' ') + '" fill="none" stroke="' + pal.grid + '" stroke-width="1"/>';
+    }
+    for (i = 0; i < N; i++) {
+      p = pt(i, MAX);
+      s += '<line x1="' + CX + '" y1="' + CY + '" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '" stroke="' + pal.grid + '" stroke-width="1"/>';
+      var a = -Math.PI / 2 + i * 2 * Math.PI / N, cos = Math.cos(a), sin = Math.sin(a);
+      var lx = CX + (R + 16) * cos, ly = CY + (R + 16) * sin;
+      var anchor = cos > 0.2 ? 'start' : cos < -0.2 ? 'end' : 'middle';
+      var lines = wrap((i + 1) + ' ' + F.layers[i].short, 16);
+      var y0 = sin < -0.5 ? ly - (lines.length - 1) * 15 : sin > 0.5 ? ly + 12 : ly + 4 - (lines.length - 1) * 7.5;
+      s += '<text x="' + lx.toFixed(1) + '" y="' + y0.toFixed(1) + '" text-anchor="' + anchor + '" font-size="13" font-weight="600" fill="' + pal.text + '">' +
+        lines.map(function (ln, k) { return '<tspan x="' + lx.toFixed(1) + '" dy="' + (k ? 15 : 0) + '">' + esc(ln) + '</tspan>'; }).join('') + '</text>';
+    }
+    for (v = 1; v <= MAX; v++) {
+      var ta = pt(0, v), tb = pt(N - 1, v);
+      s += '<text x="' + ((ta[0] + tb[0]) / 2).toFixed(1) + '" y="' + ((ta[1] + tb[1]) / 2 + 13).toFixed(1) + '" text-anchor="middle" font-size="10.5" fill="' + pal.text2 + '">' + v + '</text>';
+    }
+    var list = series();
+    list.forEach(function (ser) {
+      var col = ser.own ? pal.own : pal.ref;
+      var pts = ser.values.map(function (val, k) { return pt(k, val === null ? 0 : val); });
+      s += '<polygon points="' + pts.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' ') + '" fill="' + (ser.own ? pal.fill : 'none') +
+        '" fill-opacity="' + (ser.own ? 0.55 : 0) + '" stroke="' + col + '" stroke-width="2" stroke-linejoin="round"' + (ser.own ? '' : ' stroke-dasharray="6 4"') + '/>';
+      pts.forEach(function (q, k) {
+        if (ser.values[k] === null) return;
+        s += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="4.5" fill="' + col + '" stroke="' + pal.surface + '" stroke-width="2"/>' +
+          '<circle class="hit" cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="13" fill="transparent" data-tip="' +
+          esc(ser.name + ' · ' + F.layers[k].short + ': ' + ser.values[k]) + '"/>';
+      });
+    });
+    var all = series();
+    if (all.length > 1 || standalone) {
+      var widths = all.map(function (ser) { return 42 + ser.name.length * 8; });
+      var x = CX - widths.reduce(function (a2, b) { return a2 + b; }, 0) / 2, y = H - 22;
+      all.forEach(function (ser, k) {
+        var col = ser.own ? pal.own : pal.ref;
+        if (ser.own) s += '<rect x="' + x.toFixed(1) + '" y="' + (y - 6) + '" width="22" height="12" fill="' + pal.fill + '" fill-opacity="0.55"/>';
+        s += '<line x1="' + x.toFixed(1) + '" y1="' + y + '" x2="' + (x + 22).toFixed(1) + '" y2="' + y + '" stroke="' + col + '" stroke-width="2.5"' + (ser.own ? '' : ' stroke-dasharray="6 4"') + '/>' +
+          '<text x="' + (x + 28).toFixed(1) + '" y="' + (y + 4) + '" font-size="13" fill="' + pal.text + '">' + esc(ser.name) + '</text>';
+        x += widths[k];
+      });
+    }
+    return s + '</svg>';
+  }
+
+  /* ---------- results ---------- */
+  function mean(arr) {
+    var v = arr.filter(function (x) { return x !== null; });
+    return v.length ? v.reduce(function (a, b) { return a + b; }, 0) / v.length : null;
+  }
+  function fmt(x) { return x === null ? '–' : (Math.round(x * 10) / 10).toFixed(1); }
+
+  function renderResults() {
+    var rated = state.scores.filter(function (x) { return x !== null; }).length;
+    $('resultTitle').textContent = state.city ? 'Profile: ' + state.city : 'Your profile';
+    $('avg').textContent = fmt(mean(state.scores));
+    $('done').textContent = rated + '/' + N;
+
+    var chart = $('chart');
+    var old = chart.querySelector('svg'); if (old) old.remove();
+    chart.insertAdjacentHTML('beforeend', radarSVG(screenPalette(), false));
+
+    $('table').innerHTML = '<table><thead><tr><th>Layer</th><th>Level</th></tr></thead><tbody>' +
+      F.layers.map(function (l, i) {
+        return '<tr><td>' + (i + 1) + ' ' + esc(l.short) + '</td><td>' + (state.scores[i] === null ? '–' : state.scores[i]) + '</td></tr>';
+      }).join('') + '</tbody></table>';
+
+    $('lensTiles').innerHTML = F.lenses.map(function (lens, j) {
+      var v = state.lenses[j];
+      return '<div class="tile"><b>' + (v === null ? '–' : v) + '</b><small>/ ' + LMAX + '</small><span>' + esc(lens.name) + '</span></div>';
+    }).join('');
+
+    var step = function (item, v) {
+      var top = item.levels.length - 1;
+      if (v === null) return '';
+      if (v >= top) return '<li><strong>' + esc(item.name) + '</strong><br><span class="step">Level ' + top + ' reached</span></li>';
+      return '<li><strong>' + esc(item.name) + '</strong><br><span class="step">Level ' + v + ' → ' + (v + 1) + '</span><br>' + esc(item.levels[v + 1]) + '</li>';
+    };
+    var items = F.layers.map(function (l, i) { return step(l, state.scores[i]); }).join('') +
+      F.lenses.map(function (l, j) { return step(l, state.lenses[j]); }).join('');
+    $('next').innerHTML = items || '<li class="muted">Rate a layer to see what the next level looks like.</li>';
+  }
+
+  var tip = $('tip');
+  $('chart').addEventListener('mousemove', function (e) {
+    var t = e.target.getAttribute && e.target.getAttribute('data-tip');
+    if (!t) { tip.style.display = 'none'; return; }
+    var box = $('chart').getBoundingClientRect();
+    tip.textContent = t; tip.style.display = 'block';
+    tip.style.left = (e.clientX - box.left) + 'px'; tip.style.top = (e.clientY - box.top) + 'px';
+  });
+  $('chart').addEventListener('mouseleave', function () { tip.style.display = 'none'; });
+
+  /* ---------- export ---------- */
+  function slug() { return (state.city || 'city').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'city'; }
+  function download(name, blob) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+  function say(t) { $('msg').textContent = t; setTimeout(function () { if ($('msg').textContent === t) $('msg').textContent = ''; }, 4000); }
+  function exportSVG() { return radarSVG(PRINT, true).replace(/<circle class="hit"[^>]*\/>/g, ''); }
+
+  $('btnLink').onclick = function () {
+    var url = location.origin + location.pathname + '#' + toParams();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { say('Link copied. Anyone opening it sees these results.'); },
+        function () { location.hash = toParams(); say('Copy the link from the address bar.'); });
+    } else { location.hash = toParams(); say('Copy the link from the address bar.'); }
+  };
+  $('btnSvg').onclick = function () { download('fab-city-profile-' + slug() + '.svg', new Blob([exportSVG()], { type: 'image/svg+xml' })); };
+  $('btnPng').onclick = function () {
+    var img = new Image(), url = URL.createObjectURL(new Blob([exportSVG()], { type: 'image/svg+xml' }));
+    img.onload = function () {
+      var c = document.createElement('canvas'); c.width = W * 2; c.height = H * 2;
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      c.toBlob(function (b) { download('fab-city-profile-' + slug() + '.png', b); }, 'image/png');
+    };
+    img.src = url;
+  };
+  $('btnCsv').onclick = function () {
+    var q = function (v) { return '"' + String(v === null ? '' : v).replace(/"/g, '""') + '"'; };
+    var rows = [['City / region', 'Type', 'Name', 'Focus / question', 'Level', 'Scale', 'Level description']];
+    F.layers.forEach(function (l, i) {
+      var v = state.scores[i];
+      rows.push([state.city, 'Layer', l.name, l.focus, v, '0-' + MAX, v === null ? '' : l.levels[v]]);
+    });
+    F.lenses.forEach(function (l, j) {
+      var v = state.lenses[j];
+      rows.push([state.city, 'Lens', l.name, l.question, v, '0-' + LMAX, v === null ? '' : l.levels[v]]);
+    });
+    download('fab-city-self-assessment-' + slug() + '.csv',
+      new Blob(['﻿' + rows.map(function (r) { return r.map(q).join(','); }).join('\r\n')], { type: 'text/csv' }));
+  };
+  $('btnJson').onclick = function () {
+    var data = {
+      framework: F.title, city: state.city, date: new Date().toISOString().slice(0, 10),
+      layers: F.layers.map(function (l, i) { return { layer: l.name, level: state.scores[i] }; }),
+      lenses: F.lenses.map(function (l, j) { return { lens: l.name, level: state.lenses[j] }; })
+    };
+    download('fab-city-self-assessment-' + slug() + '.json', new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+  };
+  $('btnPrint').onclick = function () { $('tableDetails').open = true; window.print(); };
+  $('btnReset').onclick = function () {
+    if (!confirm('Clear all answers?')) return;
+    state.city = '';
+    state.scores = state.scores.map(function () { return null; });
+    state.lenses = state.lenses.map(function () { return null; });
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    renderForm(); renderResults();
+  };
+
+  load(); renderForm(); renderResults();
+})();
+</script>
+</body>
+</html>
