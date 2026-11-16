@@ -7,7 +7,7 @@ The tool gives you a profile across all seven layers, shown as a radar chart. Yo
 ## On the self-assessment tool
 ### Background
 
-The tool was developed in the research project [Fab City – Decentralized Digital Production for Urban Value Creation]([https://fab.city/learning-hub/resource-fab-city-full-stack](https://newproductioninstitute.de/en/fabcity)) at the New Production Institute, Helmut Schmidt University Hamburg.
+The tool was developed in the research project [Fab City – Decentralized Digital Production for Urban Value Creation]([https://fab.city/learning-hub/resource-fab-city-full-stack](https://newproductioninstitute.de/en/fabcity) at the New Production Institute, Helmut Schmidt University Hamburg.
 
 The work package developed a multi-scale approach for surveying the current state of Fab Cities. A systematic review of quantitative impact research on Fab Labs showed that the evidence is strong for learning, skills and entrepreneurship, and almost absent for the bioregional, place-based and knowledge-sharing layers of the Full Stack. The self-assessment complements such measurement: it lets a city or region describe its own state on every layer, including those for which hardly any quantitative indicators exist yet.
 
