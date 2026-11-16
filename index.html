@@ -141,6 +141,8 @@
   .about p:last-child { margin-bottom: 0; }
   .site-footer .shell { padding-block: 2.5rem; font-size: 0.95rem; }
   .footer-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem 3rem; }
+  .footer-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; margin-bottom: 1rem; }
+  .footer-logos img { height: 3rem; width: auto; display: block; }
   @media (max-width: 48rem) { .footer-layout { grid-template-columns: minmax(0, 1fr); } }
   .site-footer p { max-width: 68ch; margin-bottom: 0.4rem; }
   @media print {
@@ -244,7 +246,13 @@
       <p><strong id="footTitle"></strong></p>
       <p class="muted" id="credits"></p>
     </div>
-    <p class="muted" id="funding"></p>
+    <div class="footer-funding">
+      <div class="footer-logos">
+        <img src="assets/dtec-bw.svg" alt="funder logo dtec.bw" height="48">
+        <img src="assets/eu-nextgenerationeu.svg" alt="funder logo NextGenerationEU" height="48">
+      </div>
+      <p class="muted" id="funding"></p>
+    </div>
   </div>
 </footer>
 

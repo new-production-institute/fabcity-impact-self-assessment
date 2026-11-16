@@ -1,6 +1,6 @@
 # Fab City Full Stack Self-Assessment
 
-A self-assessment tool for cities and regions that want to know where they stand as a Fab City or Fab Region. It uses the Fab City Full Stack as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today?
+A self-assessment tool for cities and regions that want to know where they stand as a Fab City or Fab Region. It uses the [Fab City Full Stack](https://fab.city/learning-hub/resource-fab-city-full-stack) as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today?
 
 The result is a profile across all seven layers, shown as a radar chart. It is meant as a starting point for discussion among local actors (labs, administration, research, civil society), not as a ranking or an external evaluation.
 
@@ -14,7 +14,7 @@ The assessment matrix was tested with practitioners in the workshop "Measuring W
 
 ## What you assess
 
-**Seven Full Stack layers**, each on five described maturity levels (0–4):
+**Seven layers of the [Fab City Full Stack](https://fab.city/learning-hub/resource-fab-city-full-stack)**, each on five described maturity levels (0–4):
 
 1. Accessibility of technologies and infrastructures
 2. New Forms of Learning
@@ -51,6 +51,7 @@ There is no backend. Answers are stored in the visitor's own browser (localStora
 |---|---|
 | `index.html` | The tool: layout, styles and logic |
 | `framework.js` | All content: layers, level descriptions, lenses |
+| `assets/dtec-bw.svg`, `assets/eu-nextgenerationeu.svg` | Funder logos shown in the footer |
 | `assets/fonts/` | Self-hosted Poppins font files (SIL Open Font License, see `LICENSE.txt` there) |
 | `README.md` | This file |
 
