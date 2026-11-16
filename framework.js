@@ -9,10 +9,33 @@
  */
 window.FRAMEWORK = {
   title: "Fab City Full Stack Self-Assessment",
+  /* Shown under the title */
   intro:
-    "Rate your city or region on the seven layers of the Fab City Full Stack. " +
-    "For each layer, pick the description that fits best today. Then rate three " +
-    "cross-cutting lenses that apply across all layers.",
+    "Where does your city or region stand as a Fab City? For each of the seven layers " +
+    "of the Fab City Full Stack, pick the description that fits best today, then rate " +
+    "three cross-cutting lenses. The result is a profile to discuss with your local " +
+    "partners, not a ranking.",
+
+  /* Shown in the "About this tool" section at the bottom, one entry per paragraph */
+  about: [
+    "This self-assessment was developed in the work package “Impact” of the research project " +
+    "“Fab City – Decentralized Digital Production for Urban Value Creation” at the New Production " +
+    "Institute, Helmut Schmidt University Hamburg. It uses the Fab City Full Stack as its " +
+    "conceptual foundation and describes five maturity levels for each of its seven layers.",
+    "Research on the impact of Fab Labs offers solid evidence for learning, skills and " +
+    "entrepreneurship, but hardly any for the bioregional, place-based and knowledge-sharing " +
+    "layers. The self-assessment lets a city or region describe where it stands on every layer, " +
+    "including those for which indicators are still missing.",
+    "The assessment matrix was tested with practitioners at the Fab25 conference in 2025. " +
+    "The result is a self-description: it reflects the view of the person or group filling in " +
+    "the form."
+  ],
+
+  /* Footer */
+  credits: "Victoria Wenzelmann and Dr. Jan Peuckert, New Production Institute, Helmut Schmidt University Hamburg",
+  funding:
+    "“Fab City – Decentralized Digital Production for Urban Value Creation” is funded by dtec.bw " +
+    "and supported by the European Union – NextGenerationEU.",
 
   layers: [
     {
