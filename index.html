@@ -136,7 +136,12 @@
   button:hover { background: var(--accent); border-color: var(--accent); color: var(--text); }
   .muted { color: var(--muted); font-size: 0.85rem; }
   .site-footer { background: var(--band); box-shadow: inset 0 0.3rem 0 var(--accent); }
+  .about { padding-block: clamp(2.5rem, 5vw, 4rem); }
+  .about p { max-width: 68ch; }
+  .about p:last-child { margin-bottom: 0; }
   .site-footer .shell { padding-block: 2.5rem; font-size: 0.95rem; }
+  .footer-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem 3rem; }
+  @media (max-width: 48rem) { .footer-layout { grid-template-columns: minmax(0, 1fr); } }
   .site-footer p { max-width: 68ch; margin-bottom: 0.4rem; }
   @media print {
     .band { background: #fff; padding: 0; }
@@ -226,10 +231,20 @@
 </main>
 </div>
 
-<footer class="site-footer">
+<section class="about" id="aboutSection">
   <div class="shell">
-    <p><strong id="footTitle"></strong></p>
-    <p class="muted">Based on the Fab City Full Stack. Self-assessment results reflect the view of the person filling in the form.</p>
+    <h2 class="section-title"><span class="mark">About this tool</span></h2>
+    <div id="about"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="shell footer-layout">
+    <div>
+      <p><strong id="footTitle"></strong></p>
+      <p class="muted" id="credits"></p>
+    </div>
+    <p class="muted" id="funding"></p>
   </div>
 </footer>
 
@@ -292,6 +307,10 @@
     $('title').textContent = F.title;
     $('wordmark').textContent = F.title;
     $('footTitle').textContent = F.title;
+    $('credits').textContent = F.credits || '';
+    $('funding').textContent = F.funding || '';
+    $('about').innerHTML = (F.about || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+    if (!(F.about || []).length) $('aboutSection').style.display = 'none';
     document.title = F.title;
     $('intro').textContent = F.intro;
     $('city').value = state.city;
