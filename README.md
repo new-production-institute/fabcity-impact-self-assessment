@@ -1,18 +1,19 @@
 # Fab City Full Stack Self-Assessment
 
-A self-assessment tool for cities and regions that want to know where they stand as a Fab City or Fab Region. It uses the [Fab City Full Stack](https://fab.city/learning-hub/resource-fab-city-full-stack) as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today?
+A self-assessment tool for cities and regions to use as a starting point for discussion among local actors (labs, administration, research, civil society). It uses the [Fab City Full Stack](https://fab.city/learning-hub/resource-fab-city-full-stack) as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today? We hope that this will lead to questions and discussions about the impact that being a fab city or region has.
 
-The result is a profile across all seven layers, shown as a radar chart. It is meant as a starting point for discussion among local actors (labs, administration, research, civil society), not as a ranking or an external evaluation.
+The tool gives you a profile across all seven layers, shown as a radar chart. You cannot get any other cities' or regions' profiles, because this self-assessment is not a ranking or an external evaluation.
 
-## Background
+## On the self-assessment tool
+### Background
 
-The tool was developed in work package 4.3 "Impact" of the research project "Fab City – Decentralized Digital Production for Urban Value Creation" at the New Production Institute, Helmut Schmidt University Hamburg.
+The tool was developed in the research project [Fab City – Decentralized Digital Production for Urban Value Creation]([https://fab.city/learning-hub/resource-fab-city-full-stack](https://newproductioninstitute.de/en/fabcity)) at the New Production Institute, Helmut Schmidt University Hamburg.
 
-The work package developed a multi-scale approach for surveying the current state of Fab Cities. A systematic review of quantitative impact research on Fab Labs showed that the evidence is strong for learning, skills and entrepreneurship, and almost absent for the bioregional, place-based and knowledge-sharing layers of the Full Stack. The self-assessment complements such measurement: it lets a city or region describe its own state on every layer, including those for which hardly any indicators exist yet.
+The work package developed a multi-scale approach for surveying the current state of Fab Cities. A systematic review of quantitative impact research on Fab Labs showed that the evidence is strong for learning, skills and entrepreneurship, and almost absent for the bioregional, place-based and knowledge-sharing layers of the Full Stack. The self-assessment complements such measurement: it lets a city or region describe its own state on every layer, including those for which hardly any quantitative indicators exist yet.
 
 The assessment matrix was tested with practitioners in the workshop "Measuring What Matters. Rethinking Impact and Sustainability in Fab Labs and Fab Cities" at Fab25 (Brno & Prague, 2025). This repository turns the matrix into a web tool.
 
-## What you assess
+### What you assess
 
 **Seven layers of the [Fab City Full Stack](https://fab.city/learning-hub/resource-fab-city-full-stack)**, each on five described maturity levels (0–4):
 
@@ -32,7 +33,7 @@ The assessment matrix was tested with practitioners in the workshop "Measuring W
 
 The lens questions were part of the tested matrix; the level descriptions for the lenses were written for this web version.
 
-## What you get
+### What you get
 
 - A radar chart of your profile across the seven layers, plus your lens ratings.
 - For every layer and lens you rated, the description of the next level up, as a prompt for discussion.
@@ -40,12 +41,13 @@ The lens questions were part of the tested matrix; the level descriptions for th
 
 There is no backend. Answers are stored in the visitor's own browser (localStorage) and are only passed on if they use the share link or an export.
 
-## Known limitations
+### Known limitations
 
 - The result is a self-description. It reflects the view of the person or group filling in the form and is not comparable across cities without further calibration.
 - Participants of the Fab25 workshop identified gaps in the Full Stack itself, which this tool inherits: arts and culture and human impact are missing, Fab Regions are underrepresented, repair and reuse have no clear place, and "value" (layer 3), "place-based" (layer 5) and "bioregion" (layer 6) need clearer definitions.
 
-## Files
+## On the repository
+### Files
 
 | File | Purpose |
 |---|---|
@@ -73,14 +75,16 @@ The look follows the New Production Institute's Technology Product Portfolio sit
 
 The Fab25 workshop in which the matrix was tested was conceived and facilitated together with Cindy Kohtala (Umeå University), Adriana Cabrera (CSCP / Fab City Collective) and Pieter van der Hijden.
 
-## Related publication
+### Related publication
 
 Peuckert, J., Wenzelmann, V., & Rüdebusch, G. (2025). Measuring the Impacts of Fab Labs: A Review of Quantitative Research and Evidence. Fab25 Czechia – Bridge the Gap, Brno & Prague. https://doi.org/10.5281/zenodo.16211909
 
-## Funding
+### Funding
 
 "Fab City – Decentralized Digital Production for Urban Value Creation" is funded by dtec.bw and supported by the European Union – NextGenerationEU.
 
 ## License
 
-No license has been chosen yet. Add a `LICENSE` file before inviting reuse.
+The tool is licensed under the GNU Affero General Public License v3.0.
+
+Not covered by this license: the Poppins font files (SIL Open Font License, see assets/fonts/LICENSE.txt) and the funder logos, which remain the property of their respective owners.
