@@ -19,15 +19,6 @@ There is no backend. Answers are stored in the visitor's own browser (localStora
 | `assets/fonts/` | Self-hosted Poppins font files (SIL Open Font License, see `LICENSE.txt` there) |
 | `README.md` | This file |
 
-## Publish with GitHub Pages
-
-1. Create a new public repository on GitHub and upload all files and the `assets` folder to its root.
-2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select the `main` branch and the `/ (root)` folder, and save.
-4. After a minute or two the tool is available at `https://<your-username>.github.io/<repository-name>/`.
-
-To try it locally, open `index.html` in a browser. No build step, no server.
-
 ## Design
 
 The look follows the New Production Institute's Technology Product Portfolio site: Poppins, black on white, one amber accent (`#fcb900`) used as a highlight bar, and the hexagon mark. Colours are defined as CSS variables at the top of `index.html`. Poppins is served from this repository, so no request goes to a font service.
