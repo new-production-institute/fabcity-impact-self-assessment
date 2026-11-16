@@ -16,19 +16,19 @@ The result is a profile across all seven layers, shown as a radar chart. It is m
 
 ### Seven Full Stack layers, each on five described maturity levels (0–4):
 
-Accessibility of technologies and infrastructures
-New Forms of Learning
-Value-Generating Projects
-Collaboration and local ecosystems
-Place-based prototyping
-Bioregional strategies
-Global knowledge sharing
+- Accessibility of technologies and infrastructures
+- New Forms of Learning
+- Value-Generating Projects
+- Collaboration and local ecosystems
+- Place-based prototyping
+- Bioregional strategies
+- Global knowledge sharing
 
 ### Three cross-cutting lenses, each rated once for the city or region as a whole, on four described levels (0–3):
 
-Equity & Inclusion
-Decentralized Governance
-Digital–Physical Integration
+- Equity & Inclusion
+- Decentralized Governance
+- Digital–Physical Integration
 
 The lens questions were part of the tested matrix; the level descriptions for the lenses were written for this web version.
 
