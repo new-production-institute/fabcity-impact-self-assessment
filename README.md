@@ -1,4 +1,5 @@
 # Fab City Full Stack Self-Assessment
+https://new-production-institute.github.io/fabcity-impact-self-assessment/
 
 A self-assessment tool for cities and regions to use as a starting point for discussion among local actors (labs, administration, research, civil society). It uses the [Fab City Full Stack](https://fab.city/learning-hub/resource-fab-city-full-stack) as its conceptual foundation and asks one question per layer: which of five maturity levels (0–4) describes us best today? We hope that this will lead to questions and discussions about the impact that being a fab city or region has.
 
